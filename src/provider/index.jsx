@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from '../context/MyContext';
 
 export default function Provider({ children }) {
-  const context = {};
+  const [recipes, setRecipes] = useState({ meals: [], drinks: [] });
+  const context = {
+    recipes,
+    setRecipes,
+  };
 
   return (
     <MyContext.Provider value={ context }>
@@ -15,3 +19,11 @@ export default function Provider({ children }) {
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+const fetchApi = async (url) => {
+  const response = await fetch(url);
+  const data = response.json();
+  return data;
+};
+
+export { fetchApi };
