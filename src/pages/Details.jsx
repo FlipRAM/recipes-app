@@ -5,6 +5,7 @@ import MyContext from '../context/MyContext';
 export default function Details() {
   const [render, setRender] = useState(false);
   const { recipes } = useContext(MyContext);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function Details() {
   const renderCards = () => {
     let arrRecipes = [];
     const twelve = 12;
-    if (history.location.pathname === '/foods' && recipes.meals !== null) {
+    if (history.location.pathname.includes('/foods') && recipes.meals !== null) {
       arrRecipes = recipes.meals;
       // O slice é para que o MAP pare quando tiver no Index 11 ou seja o 12 elemento.
       const arrCards = arrRecipes.slice(0, twelve).map((e, i) => (
@@ -35,7 +36,7 @@ export default function Details() {
       ));
       return arrCards;
     }
-    if (history.location.pathname === '/drinks' && recipes.drinks !== null) {
+    if (history.location.pathname.includes('/drinks') && recipes.drinks !== null) {
       arrRecipes = recipes.drinks;
       // O slice é para que o MAP pare quando tiver no Index 11 ou seja o 12 elemento.
       const arrCards = arrRecipes.slice(0, twelve).map((e, i) => (
@@ -52,6 +53,7 @@ export default function Details() {
           </p>
         </div>
       ));
+      console.log(arrCards);
       return arrCards;
     }
   };
