@@ -114,6 +114,7 @@ function Header() {
           data-testid="ingredient-search-radio"
           type="radio"
           id="ingredientSearchRadio"
+          name="searchRadio"
         />
       </label>
       <label htmlFor="nameSearchRadio">
@@ -123,6 +124,7 @@ function Header() {
           data-testid="name-search-radio"
           type="radio"
           id="nameSearchRadio"
+          name="searchRadio"
         />
       </label>
       <label htmlFor="firstLetterSearchRadio">
@@ -132,6 +134,7 @@ function Header() {
           data-testid="first-letter-search-radio"
           type="radio"
           id="firstLetterSearchRadio"
+          name="searchRadio"
         />
       </label>
       <button

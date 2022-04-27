@@ -14,52 +14,50 @@ export default function Details() {
     }
   }, [recipes]);
 
-  const renderCards = () => {
-    let arrRecipes = [];
-    const twelve = 12;
-    if (history.location.pathname.includes('/foods') && recipes.meals !== null) {
-      arrRecipes = recipes.meals;
-      // O slice é para que o MAP pare quando tiver no Index 11 ou seja o 12 elemento.
-      const arrCards = arrRecipes.slice(0, twelve).map((e, i) => (
-        <div key={ i } data-testid={ `${i}-recipe-card` }>
-          <img
-            data-testid={ `${i}-card-img` }
-            src={ e.strMealThumb }
-            alt={ e.strMeal }
-          />
-          <p
-            data-testid={ `${i}-card-name` }
-          >
-            {e.strMeal}
-          </p>
-        </div>
-      ));
-      return arrCards;
+  const meal = () => {
+    const arrRecipes = recipes.meals[0];
+    // O slice é para que o MAP pare quando tiver no Index 11 ou seja o 12 elemento.
+    return (
+      <div>
+        <img
+          src={ arrRecipes.strMealThumb }
+          alt={ arrRecipes.strMeal }
+        />
+        <p>
+          {arrRecipes.strMeal}
+        </p>
+      </div>
+    );
+  };
+
+  const drink = () => {
+    const arrRecipes = recipes.drinks[0];
+    // O slice é para que o MAP pare quando tiver no Index 11 ou seja o 12 elemento.
+    return (
+      <div>
+        <img
+          src={ arrRecipes.strDrinkThumb }
+          alt={ arrRecipes.strDrink }
+        />
+        <p>
+          {arrRecipes.strDrink}
+        </p>
+      </div>
+    );
+  };
+
+  const renderRecipe = () => {
+    if (history.location.pathname.includes('/foods')) {
+      return meal();
     }
-    if (history.location.pathname.includes('/drinks') && recipes.drinks !== null) {
-      arrRecipes = recipes.drinks;
-      // O slice é para que o MAP pare quando tiver no Index 11 ou seja o 12 elemento.
-      const arrCards = arrRecipes.slice(0, twelve).map((e, i) => (
-        <div key={ i } data-testid={ `${i}-recipe-card` }>
-          <img
-            data-testid={ `${i}-card-img` }
-            src={ e.strDrinkThumb }
-            alt={ e.strDrink }
-          />
-          <p
-            data-testid={ `${i}-card-name` }
-          >
-            {e.strDrink}
-          </p>
-        </div>
-      ));
-      console.log(arrCards);
-      return arrCards;
+    if (history.location.pathname.includes('/drinks')) {
+      return drink();
     }
   };
+
   return (
     <div>
-      {render && renderCards() }
+      {render && renderRecipe() }
     </div>
   );
 }
