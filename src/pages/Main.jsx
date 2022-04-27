@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
+import LesserMenu from '../components/LesserMenu';
 import MyContext from '../context/MyContext';
 
 function Main() {
@@ -61,6 +62,7 @@ function Main() {
     <div>
       <Header />
       {render && renderCards() }
+      <LesserMenu />
     </div>
   );
 }
