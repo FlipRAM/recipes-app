@@ -12,6 +12,7 @@ import ExploreNationalities from './pages/ExploreNationalities';
 import Profile from './pages/Profile';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoritesRecipes from './pages/FavoritesRecipes';
+import Details from './pages/Details';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route exact path="/foods" component={ Main } />
           <Route exact path="/drinks" component={ Main } />
           <Route exact path="/explore" component={ Explore } />
+          <Route exact path="foods/:id" component={ Details } />
+          <Route exact path="drinks/:id" component={ Details } />
           <Route path="/explore/foods" component={ ExploreFoodOrDrink } />
           <Route exact path="/explore/drinks" component={ ExploreFoodOrDrink } />
           <Route
