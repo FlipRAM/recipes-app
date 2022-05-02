@@ -72,13 +72,17 @@
   position: fixed;
 }
 
+.recipe-photo {
+  width: 300px;
+}
+
 .carousel {
   display: flex;
   flex-direction: row nowrap;
   overflow-x: scroll;
 }
 
-.carousel-recommended {
+.carousel img {
   margin-right: 30px;
   width: 200px;
 }
