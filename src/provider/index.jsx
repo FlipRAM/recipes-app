@@ -4,9 +4,12 @@ import MyContext from '../context/MyContext';
 
 export default function Provider({ children }) {
   const [recipes, setRecipes] = useState({ meals: [], drinks: [] });
+  const [path, setPath] = useState('');
   const context = {
     recipes,
     setRecipes,
+    path,
+    setPath,
   };
 
   return (
