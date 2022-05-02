@@ -38,6 +38,7 @@ export const renderRecommended = (arr, type) => {
         <img
           src={ obj.strMealThumb }
           alt={ obj.strMeal }
+          className="carousel-recommended"
         />
         <p>{obj.strCategory}</p>
         <h4 data-testid={ `${index}-recomendation-title` }>{obj.strMeal}</h4>
@@ -54,6 +55,7 @@ export const renderRecommended = (arr, type) => {
         <img
           src={ obj.strDrinkThumb }
           alt={ obj.strDrink }
+          className="carousel-recommended"
         />
         <p>{obj.strAlcoholic}</p>
         <h4 data-testid={ `${index}-recomendation-title` }>{obj.strDrink}</h4>

@@ -72,13 +72,13 @@
   position: fixed;
 }
 
-#carousel {
+.carousel {
   display: flex;
   flex-direction: row nowrap;
   overflow-x: scroll;
 }
 
-#carousel img {
-  width: 200px;
+.carousel-recommended {
   margin-right: 30px;
+  width: 200px;
 }
