@@ -8,7 +8,7 @@ import mealIcon from '../images/mealIcon.svg';
 export default function LesserMenu() {
   const history = useHistory();
   return (
-    <footer data-testid="footer">
+    <footer data-testid="footer" className="footer">
       <button
         onClick={ () => history.push('/drinks') }
         data-testid="drinks-bottom-btn"

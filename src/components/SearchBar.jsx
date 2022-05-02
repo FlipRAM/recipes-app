@@ -13,7 +13,7 @@ function Header() {
     setSearchValue(target.value);
   };
 
-  const attCheckedRadios = ({ target }) => {
+  const getCheckedRadios = ({ target }) => {
     const { id, checked } = target;
     setCheckedRadios({ ...checkedRadios, [id]: checked });
   };
@@ -22,21 +22,20 @@ function Header() {
     const {
       ingredientSearchRadio, nameSearchRadio, firstLetterSearchRadio,
     } = checkedRadios;
-
     if (ingredientSearchRadio === true) {
       const newRecipes = await fetchApi(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`);
-      setRecipes(newRecipes);
+      setRecipes({ ...newRecipes, drinks: [] });
     }
     if (nameSearchRadio === true) {
       const newRecipes = await fetchApi(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`);
-      setRecipes(newRecipes);
+      setRecipes({ ...newRecipes, drinks: [] });
     }
     if (firstLetterSearchRadio === true) {
       if (searchValue.length === 1) {
         const newRecipes = await fetchApi(
           `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchValue}`,
         );
-        setRecipes(newRecipes);
+        setRecipes({ ...newRecipes, drinks: [] });
       } else {
         global.alert('Your search must have only 1 (one) character');
       }
@@ -47,19 +46,18 @@ function Header() {
     const {
       ingredientSearchRadio, nameSearchRadio, firstLetterSearchRadio,
     } = checkedRadios;
-
     if (ingredientSearchRadio === true) {
       const newRecipes = await fetchApi(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchValue}`);
-      setRecipes(newRecipes);
+      setRecipes({ ...newRecipes, meals: [] });
     }
     if (nameSearchRadio === true) {
       const newRecipes = await fetchApi(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchValue}`);
-      setRecipes(newRecipes);
+      setRecipes({ ...newRecipes, meals: [] });
     }
     if (firstLetterSearchRadio === true) {
       if (searchValue.length === 1) {
         const newRecipes = await fetchApi(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchValue}`);
-        setRecipes(newRecipes);
+        setRecipes({ ...newRecipes, meals: [] });
       } else {
         global.alert('Your search must have only 1 (one) character');
       }
@@ -85,16 +83,14 @@ function Header() {
         history.push(`${history.location.pathname}/${theChosen}`);
       }
     };
-    if (recipes.meals && recipes.meals.length === 1) {
+    if ((recipes.meals && recipes.meals.length === 1)
+      || (recipes.drinks && recipes.drinks.length === 1)) {
       goToTheChosenOne();
     }
-    if (recipes.drinks && recipes.drinks.length === 1) {
-      goToTheChosenOne();
-    }
-
     if (recipes.meals === null || recipes.drinks === null) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
+    console.log(recipes);
   }, [recipes]);
 
   return (
@@ -110,7 +106,7 @@ function Header() {
       <label htmlFor="ingredientSearchRadio">
         Ingredient
         <input
-          onChange={ attCheckedRadios }
+          onChange={ getCheckedRadios }
           data-testid="ingredient-search-radio"
           type="radio"
           id="ingredientSearchRadio"
@@ -120,7 +116,7 @@ function Header() {
       <label htmlFor="nameSearchRadio">
         Name
         <input
-          onChange={ attCheckedRadios }
+          onChange={ getCheckedRadios }
           data-testid="name-search-radio"
           type="radio"
           id="nameSearchRadio"
@@ -130,7 +126,7 @@ function Header() {
       <label htmlFor="firstLetterSearchRadio">
         First Letter
         <input
-          onChange={ attCheckedRadios }
+          onChange={ getCheckedRadios }
           data-testid="first-letter-search-radio"
           type="radio"
           id="firstLetterSearchRadio"
