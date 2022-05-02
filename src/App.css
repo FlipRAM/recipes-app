@@ -71,3 +71,14 @@
   bottom: 0;
   position: fixed;
 }
+
+#carousel {
+  display: flex;
+  flex-direction: row nowrap;
+  overflow-x: scroll;
+}
+
+#carousel img {
+  width: 200px;
+  margin-right: 30px;
+}

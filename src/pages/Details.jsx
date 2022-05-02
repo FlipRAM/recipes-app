@@ -146,9 +146,7 @@ export default function Details() {
           alt={ e.strMeal }
         />
         <div>
-          <h1 data-testid="recipe-title">
-            {e.strMeal}
-          </h1>
+          <h1 data-testid="recipe-title">{e.strMeal}</h1>
           <p data-testid="recipe-category">{e.strCategory}</p>
           <button onClick={ share } data-testid="share-btn" type="button">
             { btnShare[shared] }
@@ -177,7 +175,9 @@ export default function Details() {
         </div>
         <div>
           <h3>Recommended</h3>
-          {renderRecommended(arrRecommended, 'drinks')}
+          <div id="carousel">
+            {renderRecommended(arrRecommended, 'drinks')}
+          </div>
         </div>
       </div>));
   };
@@ -210,7 +210,9 @@ export default function Details() {
         </div>
         <div>
           <h3>Recommended</h3>
-          {renderRecommended(arrRecommended, 'meals')}
+          <div id="carousel">
+            {renderRecommended(arrRecommended, 'meals')}
+          </div>
         </div>
       </div>));
   };

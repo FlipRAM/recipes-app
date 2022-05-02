@@ -31,7 +31,10 @@ export const renderRecommended = (arr, type) => {
   if (arr.length !== null && type === 'meals') {
     arrRecommended = arr.meals;
     return arrRecommended.slice(0, SIX).map((obj, index) => (
-      <div key={ index } data-testid={ `${index}-recomendation-card` }>
+      <div
+        key={ index }
+        data-testid={ `${index}-recomendation-card` }
+      >
         <img
           src={ obj.strMealThumb }
           alt={ obj.strMeal }
@@ -44,7 +47,10 @@ export const renderRecommended = (arr, type) => {
   if (arr.length !== null && type === 'drinks') {
     arrRecommended = arr.drinks;
     return arrRecommended.slice(0, SIX).map((obj, index) => (
-      <div key={ index } data-testid={ `${index}-recomendation-card` }>
+      <div
+        key={ index }
+        data-testid={ `${index}-recomendation-card` }
+      >
         <img
           src={ obj.strDrinkThumb }
           alt={ obj.strDrink }
