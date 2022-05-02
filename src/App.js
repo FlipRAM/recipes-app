@@ -6,7 +6,8 @@ import Provider from './provider';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Explore from './pages/Explore';
-import ExploreFoodOrDrink from './pages/ExploreFoodOrDrink';
+import ExploreFood from './pages/ExploreFood';
+import ExploreDrink from './pages/ExploreDrink';
 import ExploreIngredients from './pages/ExploreIngredients';
 import ExploreNationalities from './pages/ExploreNationalities';
 import Profile from './pages/Profile';
@@ -25,8 +26,8 @@ function App() {
           <Route exact path="/explore" component={ Explore } />
           <Route exact path="/foods/:id" component={ Details } />
           <Route exact path="/drinks/:id" component={ Details } />
-          <Route path="/explore/foods" component={ ExploreFoodOrDrink } />
-          <Route exact path="/explore/drinks" component={ ExploreFoodOrDrink } />
+          <Route exact path="/explore/foods" component={ ExploreFood } />
+          <Route exact path="/explore/drinks" component={ ExploreDrink } />
           <Route
             exact
             path="/explore/foods/ingredients"
