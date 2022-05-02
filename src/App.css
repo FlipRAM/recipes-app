@@ -76,13 +76,13 @@
   width: 300px;
 }
 
-#carousel {
+.carousel {
   display: flex;
   flex-direction: row nowrap;
   overflow-x: scroll;
 }
 
-#carousel img {
+.carousel img {
   margin-right: 30px;
   width: 200px;
 }

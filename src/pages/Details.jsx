@@ -176,7 +176,7 @@ export default function Details() {
         </div>
         <div>
           <h3>Recommended</h3>
-          <div id="carousel">
+          <div className="carousel">
             {renderRecommended(arrRecommended, 'drinks')}
           </div>
         </div>
@@ -210,7 +210,7 @@ export default function Details() {
         </div>
         <div>
           <h3>Recommended</h3>
-          <div id="carousel">
+          <div className="carousel">
             {renderRecommended(arrRecommended, 'meals')}
           </div>
         </div>
