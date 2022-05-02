@@ -141,6 +141,7 @@ export default function Details() {
     return arrRecipes.map((e, index) => (
       <div key={ index }>
         <img
+          className="recipe-photo"
           data-testid="recipe-photo"
           src={ e.strMealThumb }
           alt={ e.strMeal }
@@ -175,7 +176,7 @@ export default function Details() {
         </div>
         <div>
           <h3>Recommended</h3>
-          <div id="carousel">
+          <div className="carousel">
             {renderRecommended(arrRecommended, 'drinks')}
           </div>
         </div>
@@ -186,14 +187,13 @@ export default function Details() {
     return arrRecipes.map((e, i) => (
       <div key={ i }>
         <img
+          className="recipe-photo"
           data-testid="recipe-photo"
           src={ e.strDrinkThumb }
           alt={ e.strDrink }
         />
         <div>
-          <h1 data-testid="recipe-title">
-            {e.strDrink}
-          </h1>
+          <h1 data-testid="recipe-title">{e.strDrink}</h1>
           <p data-testid="recipe-category">{e.strAlcoholic}</p>
           <button onClick={ share } data-testid="share-btn" type="button">
             { btnShare[shared] }
@@ -210,7 +210,7 @@ export default function Details() {
         </div>
         <div>
           <h3>Recommended</h3>
-          <div id="carousel">
+          <div className="carousel">
             {renderRecommended(arrRecommended, 'meals')}
           </div>
         </div>

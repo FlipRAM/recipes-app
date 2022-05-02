@@ -78,7 +78,8 @@ export const unfavorite = (id) => {
   if (favoriteRecipes !== null) {
     const arrFavorites = favoriteRecipes.filter((e) => e.id !== id);
     if (arrFavorites.length === 0) {
-      localStorage.removeItem('favoriteRecipes');
+      // localStorage.removeItem('favoriteRecipes');
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     } else {
       localStorage.setItem('favoriteRecipes', JSON.stringify(arrFavorites));
     }
