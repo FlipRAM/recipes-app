@@ -72,6 +72,10 @@
   position: fixed;
 }
 
+.recipe-photo {
+  width: 300px;
+}
+
 #carousel {
   display: flex;
   flex-direction: row nowrap;
@@ -79,6 +83,6 @@
 }
 
 #carousel img {
-  width: 200px;
   margin-right: 30px;
+  width: 200px;
 }
