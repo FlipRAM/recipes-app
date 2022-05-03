@@ -9,11 +9,12 @@ import Explore from './pages/Explore';
 import ExploreFood from './pages/ExploreFood';
 import ExploreDrink from './pages/ExploreDrink';
 import ExploreIngredients from './pages/ExploreIngredients';
-import ExploreNationalities from './pages/ExploreNationalities';
 import Profile from './pages/Profile';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoritesRecipes from './pages/FavoritesRecipes';
 import Details from './pages/Details';
+import ExploreNationalities from './pages/ExploreNationalities';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/done-recipes" component={ DoneRecipe } />
           <Route exact path="/favorite-recipes" component={ FavoritesRecipes } />
+          <Route path="" component={ NotFound } />
         </Switch>
       </BrowserRouter>
     </Provider>
