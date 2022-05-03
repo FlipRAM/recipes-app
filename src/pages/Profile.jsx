@@ -9,8 +9,10 @@ export default function Profile() {
 
   useEffect(() => {
     const checkData = () => {
-      const { email } = JSON.parse(localStorage.getItem('user'));
-      setUserEmail(email);
+      if (localStorage.getItem('user') !== null) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        setUserEmail(user.email);
+      }
     };
     checkData();
   }, []);
