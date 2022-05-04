@@ -9,14 +9,9 @@ import {
   extraVerifyAll, renderRecommended,
 } from './DetailsExtra/Functions';
 import {
-  verifyFavorite,
-  verifyCompleteRate,
-  verifyStartOrContinue,
-  favoriteMeat,
-  favoriteDrink,
-  unfavorite,
-  saveMeal,
-  saveDrink,
+  verifyFavorite, verifyCompleteRate,
+  verifyStartOrContinue, favoriteMeal, favoriteDrink,
+  unfavorite, saveRecipeDrink, saveRecipeMeal,
 } from './DetailsExtra/Functions2';
 import { fetchApi } from '../provider';
 
@@ -61,9 +56,7 @@ export default function Details() {
         true: () => setRecipes({ ...result, meals: [] }),
         false: () => setRecipes({ ...result, drinks: [] }),
       };
-      if (result) {
-        isDrinks[history.location.pathname.includes('/drinks')]();
-      }
+      isDrinks[history.location.pathname.includes('/drinks')]();
     };
     if ((recipes.meals.length === 1 || recipes.drinks.length === 1) && render === false) {
       verifyStatus();
@@ -72,10 +65,10 @@ export default function Details() {
       attRecipes();
     }
   }, [recipes, ingredientsMaped, arrRecommended]);
-  const favoriteAndUnfavoriteMeat = () => {
+  const favoriteAndUnfavoriteMeal = () => {
     const trueOrFalse = {
       true: () => unfavorite(id),
-      false: () => favoriteMeat(recipes.meals[0]),
+      false: () => favoriteMeal(recipes.meals[0]),
     };
     return trueOrFalse[isFavorite]();
   };
@@ -88,7 +81,7 @@ export default function Details() {
   };
   const favorite = () => {
     const trueOrFalse = {
-      true: () => favoriteAndUnfavoriteMeat(),
+      true: () => favoriteAndUnfavoriteMeal(),
       false: () => favoriteAndUnfavoriteDrink(),
     };
     trueOrFalse[history.location.pathname.includes('/foods')]();
@@ -225,10 +218,12 @@ export default function Details() {
   };
   const startResumeRecipe = () => {
     const isMeal = {
-      true: () => saveMeal(recipes.meals[0]),
-      false: () => saveDrink(recipes.drinks[0]),
+      true: () => saveRecipeMeal(recipes.meals[0], []),
+      false: () => saveRecipeDrink(recipes.drinks[0], []),
     };
-    isMeal[history.location.pathname.includes('/foods')]();
+    if (startOrContinue === 'Start Recipe') {
+      isMeal[history.location.pathname.includes('/foods')]();
+    }
     history.push(`${history.location.pathname}/in-progress`);
   };
   return (

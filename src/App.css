@@ -86,3 +86,7 @@
   margin-right: 30px;
   width: 200px;
 }
+
+.risked {
+  text-decoration: line-through;
+}
