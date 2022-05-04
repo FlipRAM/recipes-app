@@ -56,7 +56,7 @@ export default function InProgress() {
     if (recipes.drinks.length !== 1 && render === false) {
       attRecipes();
     }
-    if (arrChecked.includes(false) !== true && isRecipeCompleted === true) {
+    if (arrChecked.includes(false) === false && isRecipeCompleted === true) {
       setIsRecipeCompleted(false);
     }
     if (arrChecked.includes(false) === true && isRecipeCompleted === false) {

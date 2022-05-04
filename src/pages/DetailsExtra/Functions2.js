@@ -79,6 +79,8 @@ export const saveCompleteRecipe = (recipe) => {
     : inProgressRecipes.cocktails;
   delete arrInProgressRecipes[recipe.idMeal || recipe.idDrink];
   localStorage.setItem('inProgressRecipes', JSON.stringify(arrInProgressRecipes));
+  const today = new Date();
+  const date = `${today.getDate()}-${(today.getMonth() + 1)}-${today.getFullYear()}`;
   let newRecipe = [{
     id: recipe.idMeal || recipe.idDrink,
     type: recipe.idMeal ? 'meal' : 'drink',
@@ -87,7 +89,7 @@ export const saveCompleteRecipe = (recipe) => {
     alcoholicOrNot: recipe.strAlcoholic || '',
     name: recipe.strMeal || recipe.strDrink,
     image: recipe.strMealThumb || recipe.strDrinkThumb,
-    doneDate: '',
+    doneDate: date,
     tags: recipe.strTags || [],
   }];
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));

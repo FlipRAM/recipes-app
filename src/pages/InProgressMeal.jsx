@@ -58,6 +58,7 @@ export default function InProgressFood() {
     }
     if (arrChecked.includes(false) !== true && isRecipeCompleted === true) {
       setIsRecipeCompleted(false);
+      console.log('entrou');
     }
     if (arrChecked.includes(false) === true && isRecipeCompleted === false) {
       setIsRecipeCompleted(true);
