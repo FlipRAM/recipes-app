@@ -4,7 +4,7 @@ import { fetchApi } from '../../provider';
 const SIX = 6;
 const FIFTEEN = 15;
 const TWENTY = 20;
-const FOUR = 4;
+const FIVE = 5;
 
 export const renderIngredients = (recipe, quantity) => {
   const ingredients = [];
@@ -13,7 +13,7 @@ export const renderIngredients = (recipe, quantity) => {
     const strIngredient = `strIngredient${index}`;
     const strMeasure = `strMeasure${index}`;
     const str = `-${recipe[0][strIngredient]} - ${recipe[0][strMeasure]}`;
-    if (str.length > FOUR && str !== '-null - null') {
+    if (str.length > FIVE && str !== '-null - null') {
       ingredients.push(str);
       arrIngredients.push(`${recipe[0][strIngredient]}`);
     }
@@ -80,13 +80,17 @@ export const extraVerifyAll = (one, two, three) => {
     true: () => 'Continue Recipe',
     false: () => 'Start Recipe',
   };
-  const value1 = testStartOrContinue[one]();
+  let value1 = 'Finish Recipe';
+  if (one === true || one === false) {
+    value1 = testStartOrContinue[one]();
+  }
   const mealOrDrink = {
     true: () => renderIngredients(three.meals, TWENTY),
     false: () => renderIngredients(three.drinks, FIFTEEN),
   };
-  const { ingredientsMaped } = mealOrDrink[two]();
+  const { ingredientsMaped, savedIngredients } = mealOrDrink[two]();
   const value3 = ingredientsMaped;
+  const value4 = savedIngredients;
   let value2 = '';
   if (three.meals.length === 1 || three.drinks.length === 1) {
     const isRecipeMeal = {
@@ -106,7 +110,7 @@ export const extraVerifyAll = (one, two, three) => {
     value2 = isRecipeMeal[two]();
   }
   const status = {
-    value1, value2, value3,
+    value1, value2, value3, value4,
   };
   return status;
 };

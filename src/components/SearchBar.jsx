@@ -90,7 +90,6 @@ function Header() {
     if (recipes.meals === null || recipes.drinks === null) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    console.log(recipes);
   }, [recipes]);
 
   return (
