@@ -5,11 +5,14 @@ import LesserMenu from '../components/LesserMenu';
 import MyContext from '../context/MyContext';
 
 function Main() {
-  const { recipes, setRecipes, path, setPath } = useContext(MyContext);
+  const {
+    recipes, setRecipes, path, setPath, ingredientFilter, setIngredientFilter,
+  } = useContext(MyContext);
   const [buttonsCategory, setButtonsCategory] = useState([]);
   const [categorySelected, setCategorySelected] = useState('');
   const history = useHistory();
   const { location: { pathname } } = history;
+  const basicEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 
   const getEach = async (endpoint) => {
     const maxLength = 12;
@@ -45,7 +48,7 @@ function Main() {
         }
       });
       return listButtonsFood;
-    } if (endpoint === 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list') {
+    } if (endpoint === basicEndpoint) {
       const listButtonsDrinks = [];
       const { drinks } = await fetch(endpoint).then((response) => response.json());
       drinks.forEach((element, index) => {
@@ -55,6 +58,20 @@ function Main() {
       });
       return listButtonsDrinks;
     }
+  };
+
+  const pushDrinks = async (arg, end) => {
+    const listDrinkEnd = [];
+    const maxLen = 12;
+    let newEndpoint = end;
+    if (arg) {
+      newEndpoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientFilter}`;
+    }
+    const { drinks } = await fetch(newEndpoint).then((response) => response.json());
+    drinks.forEach((element, index) => {
+      if (index < maxLen) { listDrinkEnd.push(element); }
+    });
+    return listDrinkEnd;
   };
 
   const getSelected = async (endpoint) => {
@@ -69,18 +86,13 @@ function Main() {
       });
       return listCategoryFood;
     } if (endpoint.includes('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=')) {
-      const listCategoryDrink = [];
-      const { drinks } = await fetch(endpoint).then((response) => response.json());
-      drinks.forEach((element, index) => {
-        if (index < maxLengthSelected) {
-          listCategoryDrink.push(element);
-        }
-      });
+      const listCategoryDrink = pushDrinks(ingredientFilter !== '', endpoint);
       return listCategoryDrink;
     }
   };
 
   useEffect(() => {
+    if (ingredientFilter !== '') { setCategorySelected(ingredientFilter); }
     if (pathname !== path) {
       setCategorySelected('');
       setPath(pathname);
@@ -109,7 +121,7 @@ function Main() {
       getFood();
     } if (path === '/drinks') {
       const getCategoriesDrink = async () => {
-        const urlButtons = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+        const urlButtons = basicEndpoint;
         const buttons = await getEachCategory(urlButtons);
         setButtonsCategory(buttons);
       };
@@ -131,12 +143,11 @@ function Main() {
 
   const handleSelected = ({ target: { value } }) => {
     setCategorySelected(value);
+    if (ingredientFilter !== '') { setIngredientFilter(''); }
   };
 
   const checkIfEqual = ({ target: { value } }) => {
-    if (value === categorySelected) {
-      setCategorySelected('');
-    }
+    if (value === categorySelected) { setCategorySelected(''); }
   };
 
   const renderButtonsCategories = () => {
@@ -175,44 +186,52 @@ function Main() {
   };
 
   const renderCards = () => {
+    const maxLength = 12;
     if (path === '/foods' && recipes.meals !== null) {
       const arrMeals = recipes.meals;
-      const arrCards = arrMeals.map((e, i) => (
-        <Link key={ i } to={ { pathname: `/foods/${e.idMeal}` } }>
-          <div data-testid={ `${i}-recipe-card` }>
-            <img
-              data-testid={ `${i}-card-img` }
-              src={ e.strMealThumb }
-              alt={ e.strMeal }
-            />
-            <p
-              data-testid={ `${i}-card-name` }
-            >
-              {e.strMeal}
-            </p>
-          </div>
-        </Link>
-      ));
+      const arrCards = arrMeals.map((e, i) => {
+        if (i < maxLength) {
+          return (
+            <Link key={ i } to={ { pathname: `/foods/${e.idMeal}` } }>
+              <div data-testid={ `${i}-recipe-card` }>
+                <img
+                  data-testid={ `${i}-card-img` }
+                  src={ e.strMealThumb }
+                  alt={ e.strMeal }
+                />
+                <p data-testid={ `${i}-card-name` }>
+                  {e.strMeal}
+                </p>
+              </div>
+            </Link>
+          );
+        }
+        return null;
+      });
       return arrCards;
-    }
-    if (path === '/drinks' && recipes.drinks !== null) {
+    } if (path === '/drinks' && recipes.drinks !== null) {
       const arrDrinks = recipes.drinks;
-      const arrCards = arrDrinks.map((e, i) => (
-        <Link key={ i } to={ { pathname: `/drinks/${e.idDrink}` } }>
-          <div data-testid={ `${i}-recipe-card` }>
-            <img
-              data-testid={ `${i}-card-img` }
-              src={ e.strDrinkThumb }
-              alt={ e.strDrink }
-            />
-            <p
-              data-testid={ `${i}-card-name` }
-            >
-              {e.strDrink}
-            </p>
-          </div>
-        </Link>
-      ));
+      const arrCards = arrDrinks.map((e, i) => {
+        if (i < maxLength) {
+          return (
+            <Link key={ i } to={ { pathname: `/drinks/${e.idDrink}` } }>
+              <div data-testid={ `${i}-recipe-card` }>
+                <img
+                  data-testid={ `${i}-card-img` }
+                  src={ e.strDrinkThumb }
+                  alt={ e.strDrink }
+                />
+                <p
+                  data-testid={ `${i}-card-name` }
+                >
+                  {e.strDrink}
+                </p>
+              </div>
+            </Link>
+          );
+        }
+        return null;
+      });
       return arrCards;
     }
   };

@@ -8,7 +8,6 @@ import Main from './pages/Main';
 import Explore from './pages/Explore';
 import ExploreFood from './pages/ExploreFood';
 import ExploreDrink from './pages/ExploreDrink';
-import ExploreIngredients from './pages/ExploreIngredients';
 import Profile from './pages/Profile';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoritesRecipes from './pages/FavoritesRecipes';
@@ -17,6 +16,8 @@ import ExploreNationalities from './pages/ExploreNationalities';
 import NotFound from './pages/NotFound';
 import InProgressDrink from './pages/InProgressDrink';
 import InProgressFood from './pages/InProgressMeal';
+import ExploreFoodIngredients from './pages/ExploreFoodIngredients';
+import ExploreDrinkIngredients from './pages/ExploreDrinkIngredients';
 
 function App() {
   return (
@@ -36,12 +37,12 @@ function App() {
           <Route
             exact
             path="/explore/foods/ingredients"
-            component={ ExploreIngredients }
+            component={ ExploreFoodIngredients }
           />
           <Route
             exact
             path="/explore/drinks/ingredients"
-            component={ ExploreIngredients }
+            component={ ExploreDrinkIngredients }
           />
           <Route
             exact
