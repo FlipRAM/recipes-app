@@ -50,7 +50,8 @@ export default function DoneRecipe() {
         Drinks
       </button>
       {
-        doneRecipes.filter((e) => e.type.includes(filter)).map((element, index) => {
+        doneRecipes
+        && doneRecipes.filter((e) => e.type.includes(filter)).map((element, index) => {
           console.log(element);
           // const index = i - 1;
           if (element.type === 'food') {

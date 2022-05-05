@@ -5,11 +5,14 @@ import MyContext from '../context/MyContext';
 export default function Provider({ children }) {
   const [recipes, setRecipes] = useState({ meals: [], drinks: [] });
   const [path, setPath] = useState('');
+  const [ingredientFilter, setIngredientFilter] = useState('');
   const context = {
     recipes,
     setRecipes,
     path,
     setPath,
+    ingredientFilter,
+    setIngredientFilter,
   };
 
   return (
