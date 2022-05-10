@@ -2,15 +2,17 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import LesserMenu from '../components/LesserMenu';
+import styles from './css/Explore.module.css';
 
 export default function Explore() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className={ styles.main }>
       <Header />
-      <div>
+      <div className={ styles.btnsFilter }>
         <button
+          className={ styles.btns }
           type="button"
           onClick={ () => history.push('/explore/foods') }
           data-testid="explore-foods"
@@ -18,6 +20,7 @@ export default function Explore() {
           Explore Foods
         </button>
         <button
+          className={ styles.btns }
           type="button"
           onClick={ () => history.push('/explore/drinks') }
           data-testid="explore-drinks"

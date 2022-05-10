@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import LesserMenu from '../components/LesserMenu';
 import MyContext from '../context/MyContext';
 import { fetchApi } from '../provider';
+import styles from './css/ExploreNationalities.module.css';
 
 function ExploreNationalities() {
   const [categories, setCategories] = useState([]);
@@ -40,36 +41,60 @@ function ExploreNationalities() {
     }
   }, [categories, selectedCategorie, recipes, render]);
   return (
-    <div>
+    <div className={ styles.main }>
       <Header />
-      <select
-        data-testid="explore-by-nationality-dropdown"
-        onChange={ ({ target }) => setSelectedCategorie(target.value) }
-        name="area"
-        id="area"
-      >
-        <option data-testid="All-option" value="all">All</option>
-        {categories.map((obj) => (
+      <div className={ styles.wrapper }>
+
+        <select
+          className={ styles.select }
+          data-testid="explore-by-nationality-dropdown"
+          onChange={ ({ target }) => setSelectedCategorie(target.value) }
+          name="area"
+          id="area"
+        >
           <option
-            data-testid={ `${obj.strArea}-option` }
-            key={ obj.strArea }
-            value={ obj.strArea }
+            className={ styles.option }
+            data-testid="All-option"
+            value="all"
           >
-            {obj.strArea}
-          </option>))}
-      </select>
-      {render === true && recipes.meals.slice(0, TWELVE).map((obj, index) => (
-        <a key={ obj.idMeal } href={ `http://localhost:3000/foods/${obj.idMeal}` }>
-          <div data-testid={ `${index}-recipe-card` }>
-            <p data-testid={ `${index}-card-name` }>{ obj.strMeal }</p>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ obj.strMealThumb }
-              alt={ obj.idMeal }
-            />
-          </div>
-        </a>
-      ))}
+            All
+          </option>
+          {categories.map((obj) => (
+            <option
+              className={ styles.option }
+              data-testid={ `${obj.strArea}-option` }
+              key={ obj.strArea }
+              value={ obj.strArea }
+            >
+              {obj.strArea}
+            </option>))}
+        </select>
+        {render === true && recipes.meals.slice(0, TWELVE).map((obj, index) => (
+          <a
+            className={ styles.link }
+            key={ obj.idMeal }
+            href={ `http://localhost:3000/foods/${obj.idMeal}` }
+          >
+            <div
+              className={ styles.eachCard }
+              data-testid={ `${index}-recipe-card` }
+            >
+              <p
+                className={ styles.name }
+                data-testid={ `${index}-card-name` }
+              >
+                { obj.strMeal }
+              </p>
+              <img
+                className={ styles.recipePhoto }
+                data-testid={ `${index}-card-img` }
+                src={ obj.strMealThumb }
+                alt={ obj.idMeal }
+              />
+            </div>
+          </a>
+        ))}
+      </div>
       <LesserMenu />
     </div>
   );

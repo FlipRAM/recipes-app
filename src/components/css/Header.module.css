@@ -1,0 +1,42 @@
+.headerContainer {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  width: 100%;
+}
+
+.headerWrapper {
+  display: grid;
+  grid-template-columns: 60px auto 60px;
+  text-align: center;
+  width: 100%;
+}
+
+.headerWrapper h1 {
+  align-items: center;
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: center;
+  margin: 0;
+}
+
+.profileImage {
+  margin-left: -5px;
+}
+
+.profileIcon, .searchIcon {
+  background: var(--secondary-color);
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  transition: 0.1s;
+  width: 60px;
+}
+
+.playButton:active {
+  box-shadow: 0 4px 4px var(--black);
+}

@@ -1,0 +1,58 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
+.select {
+  background-color: var(--secondary-color);
+  border: none;
+  color: var(--primary-color);
+  height: 30px;
+  text-align: center;
+  width: 80%;
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
+  justify-content: center;
+  margin: 80px 0;
+  width: 100%;
+}
+
+.recipePhoto {
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  width: 90%;
+}
+
+.eachCard {
+  align-items: center;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.eachCard:hover {
+  box-shadow: 0 4px 4px var(--black);
+}
+
+.link {
+  color: var(--black);
+  cursor: pointer;
+  text-decoration: none;
+  width: 90%;
+}
+
+.name {
+  cursor: pointer;
+  font-size: 24px;
+  text-decoration: none;
+}

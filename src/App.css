@@ -66,27 +66,3 @@
     transform: rotate(-10deg);
   }
 }
-
-.footer {
-  bottom: 0;
-  position: fixed;
-}
-
-.recipe-photo {
-  width: 300px;
-}
-
-.carousel {
-  display: flex;
-  flex-direction: row nowrap;
-  overflow-x: scroll;
-}
-
-.carousel img {
-  margin-right: 30px;
-  width: 200px;
-}
-
-.risked {
-  text-decoration: line-through;
-}

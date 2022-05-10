@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { unfavorite } from './DetailsExtra/Functions2';
+import styles from './css/FavoritesRecipes.module.css';
 
 export default function FavoritesRecipes() {
   const [shared, setShared] = useState(false);
@@ -57,55 +58,62 @@ export default function FavoritesRecipes() {
       renderFavorites = filter.food === 'on' ? favoritesFoods : favoritesDrink;
     }
     return renderFavorites.map((obj, index) => (
-      <div key={ obj.id }>
+      <div className={ styles.eachRecipe } key={ obj.id }>
         <a href={ redirectToDetails(obj.id, obj.type) }>
           <img
-            className="recipe-photo"
+            className={ styles.recipePhoto }
             data-testid={ `${index}-horizontal-image` }
             src={ obj.image }
             alt={ obj.name }
           />
         </a>
         <p
+          className={ styles.ctg }
           data-testid={ `${index}-horizontal-top-text` }
         >
           {obj.alcoholicOrNot || (`${obj.nationality} - ${obj.category}`)}
         </p>
         <a href={ redirectToDetails(obj.id, obj.type) }>
           <p
+            className={ styles.name }
             data-testid={ `${index}-horizontal-name` }
           >
             { obj.name }
 
           </p>
         </a>
-        <button
-          data-testid={ `${index}-horizontal-share-btn` }
-          onClick={ () => share(obj.id, obj.type) }
-          src={ shareIcon }
-          type="button"
-        >
-          { btnShare[shared] }
-        </button>
-        <button
-          onClick={ () => unfavoriteAndReload(obj.id) }
-          type="button"
-          src={ blackHeartIcon }
-        >
-          <img
-            data-testid={ `${index}-horizontal-favorite-btn` }
+        <div className={ styles.btnShareAndFavorite }>
+          <button
+            className={ styles.btnShare }
+            data-testid={ `${index}-horizontal-share-btn` }
+            onClick={ () => share(obj.id, obj.type) }
+            src={ shareIcon }
+            type="button"
+          >
+            { btnShare[shared] }
+          </button>
+          <button
+            className={ styles.btnFavorite }
+            onClick={ () => unfavoriteAndReload(obj.id) }
+            type="button"
             src={ blackHeartIcon }
-            alt="blackHeartIcon"
-          />
-        </button>
+          >
+            <img
+              data-testid={ `${index}-horizontal-favorite-btn` }
+              src={ blackHeartIcon }
+              alt="blackHeartIcon"
+            />
+          </button>
+        </div>
       </div>
     ));
   };
   return (
-    <div>
+    <div className={ styles.main }>
       <Header />
-      <div>
+      <div className={ styles.btnsFilter }>
         <button
+          className={ styles.btns }
           data-testid="filter-by-all-btn"
           type="button"
           onClick={ () => setFilter({ all: 'on', food: 'off', drinks: 'off' }) }
@@ -114,6 +122,7 @@ export default function FavoritesRecipes() {
 
         </button>
         <button
+          className={ styles.btns }
           data-testid="filter-by-food-btn"
           type="button"
           onClick={ () => setFilter({ all: 'off', food: 'on', drinks: 'off' }) }
@@ -121,6 +130,7 @@ export default function FavoritesRecipes() {
           Food
         </button>
         <button
+          className={ styles.btns }
           data-testid="filter-by-drink-btn"
           type="button"
           onClick={ () => setFilter({ all: 'off', food: 'off', drinks: 'on' }) }

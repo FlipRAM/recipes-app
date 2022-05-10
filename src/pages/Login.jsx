@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
+import styles from './css/Login.module.css';
+import rockGlass from '../images/rockGlass.svg';
 
 export default function Login({ history }) {
   const [data, setData] = useState({
@@ -32,8 +34,15 @@ export default function Login({ history }) {
   }
 
   return (
-    <div>
-      <form>
+    <div className={ styles.main }>
+      <object
+        className={ styles.logo }
+        type="image/svg+xml"
+        data={ rockGlass }
+      >
+        Glass
+      </object>
+      <form className={ styles.loginContainer }>
         <input
           type="email"
           name="email"
@@ -50,15 +59,16 @@ export default function Login({ history }) {
           onChange={ handleChange }
           placeholder="Senha"
         />
-        <button
-          type="button"
-          data-testid="login-submit-btn"
-          disabled={ isBtnDisabled }
-          onClick={ saveToken }
-        >
-          Enter
-        </button>
       </form>
+      <button
+        className={ styles.loginButton }
+        type="button"
+        data-testid="login-submit-btn"
+        disabled={ isBtnDisabled }
+        onClick={ saveToken }
+      >
+        Enter
+      </button>
     </div>
   );
 }

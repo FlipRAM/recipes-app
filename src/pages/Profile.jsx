@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import LesserMenu from '../components/LesserMenu';
+import styles from './css/Profile.module.css';
 
 export default function Profile() {
   const [userEmail, setUserEmail] = useState('');
@@ -28,11 +29,13 @@ export default function Profile() {
   };
 
   return (
-    <div>
+    <div className={ styles.main }>
       <Header />
-      <div>
-        <p data-testid="profile-email">{ userEmail }</p>
+      <div className={ styles.profileWrapper }>
+        <p className={ styles.email } data-testid="profile-email">{ userEmail }</p>
+        <hr className={ styles.division } />
         <button
+          className={ styles.btns }
           type="button"
           onClick={ () => history.push('/done-recipes') }
           data-testid="profile-done-btn"
@@ -40,6 +43,7 @@ export default function Profile() {
           Done Recipes
         </button>
         <button
+          className={ styles.btns }
           type="button"
           onClick={ () => history.push('/favorite-recipes') }
           data-testid="profile-favorite-btn"
@@ -47,6 +51,7 @@ export default function Profile() {
           Favorite Recipes
         </button>
         <button
+          className={ styles.btns }
           type="button"
           onClick={ logout }
           data-testid="profile-logout-btn"

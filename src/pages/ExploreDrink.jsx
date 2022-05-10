@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import LesserMenu from '../components/LesserMenu';
 import MyContext from '../context/MyContext';
+import styles from './css/Explore.module.css';
 
 export default function ExploreDrink() {
   const { setRecipes } = useContext(MyContext);
@@ -18,10 +19,11 @@ export default function ExploreDrink() {
   };
 
   return (
-    <div>
+    <div className={ styles.main }>
       <Header />
-      <div>
+      <div className={ styles.btnsFilter }>
         <button
+          className={ styles.btns }
           type="button"
           onClick={ () => history.push('/explore/drinks/ingredients') }
           data-testid="explore-by-ingredient"
@@ -29,6 +31,7 @@ export default function ExploreDrink() {
           By Ingredient
         </button>
         <button
+          className={ styles.btns }
           type="button"
           onClick={ generateRandomDrink }
           data-testid="explore-surprise"

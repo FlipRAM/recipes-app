@@ -1,0 +1,37 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
+  margin: 80px 0;
+  width: 90%;
+}
+
+.link {
+  color: var(--black);
+  cursor: pointer;
+  text-decoration: none;
+  width: 60%;
+}
+
+.eachIngredient {
+  align-items: center;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 160px;
+  justify-content: center;
+}
+
+.eachIngredient:hover {
+  box-shadow: 0 4px 4px var(--black);
+}

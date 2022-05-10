@@ -81,7 +81,6 @@ export const saveCompleteRecipe = (recipe) => {
   localStorage.setItem('inProgressRecipes', JSON.stringify(arrInProgressRecipes));
   const today = new Date();
   const date = `${today.getDate()}/${(today.getMonth() + 1)}/${today.getFullYear()}`;
-  console.log(recipe);
   let newRecipe = [{
     id: recipe.idMeal || recipe.idDrink,
     type: recipe.idMeal ? 'food' : 'drink',

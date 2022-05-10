@@ -1,5 +1,6 @@
 import React from 'react';
 import { fetchApi } from '../../provider';
+import styles from '../css/Details.module.css';
 
 const SIX = 6;
 const FIFTEEN = 15;
@@ -32,6 +33,7 @@ export const renderRecommended = (arr, type) => {
     arrRecommended = arr.meals;
     return arrRecommended.slice(0, SIX).map((obj, index) => (
       <div
+        className={ styles.eachRecommended }
         key={ index }
         data-testid={ `${index}-recomendation-card` }
       >
@@ -40,6 +42,7 @@ export const renderRecommended = (arr, type) => {
           alt={ obj.strMeal }
         />
         <p>{obj.strCategory}</p>
+        <hr className={ styles.divisionWhite } />
         <h4 data-testid={ `${index}-recomendation-title` }>{obj.strMeal}</h4>
       </div>
     ));
@@ -48,6 +51,7 @@ export const renderRecommended = (arr, type) => {
     arrRecommended = arr.drinks;
     return arrRecommended.slice(0, SIX).map((obj, index) => (
       <div
+        className={ styles.eachRecommended }
         key={ index }
         data-testid={ `${index}-recomendation-card` }
       >
@@ -56,6 +60,7 @@ export const renderRecommended = (arr, type) => {
           alt={ obj.strDrink }
         />
         <p>{obj.strAlcoholic}</p>
+        <hr className={ styles.divisionWhite } />
         <h4 data-testid={ `${index}-recomendation-title` }>{obj.strDrink}</h4>
       </div>
     ));

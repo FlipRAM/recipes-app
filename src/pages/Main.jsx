@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import LesserMenu from '../components/LesserMenu';
 import MyContext from '../context/MyContext';
+import styles from './css/Main.module.css';
 
 function Main() {
   const {
@@ -13,7 +15,6 @@ function Main() {
   const history = useHistory();
   const { location: { pathname } } = history;
   const basicEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-
   const getEach = async (endpoint) => {
     const maxLength = 12;
     if (endpoint === 'https://www.themealdb.com/api/json/v1/1/search.php?s=') {
@@ -36,7 +37,6 @@ function Main() {
       return listDrinks;
     }
   };
-
   const getEachCategory = async (endpoint) => {
     const maxLength = 5;
     if (endpoint === 'https://www.themealdb.com/api/json/v1/1/list.php?c=list') {
@@ -59,7 +59,6 @@ function Main() {
       return listButtonsDrinks;
     }
   };
-
   const pushDrinks = async (arg, end) => {
     const listDrinkEnd = [];
     const maxLen = 12;
@@ -73,7 +72,6 @@ function Main() {
     });
     return listDrinkEnd;
   };
-
   const getSelected = async (endpoint) => {
     const maxLengthSelected = 12;
     if (endpoint.includes('www.themealdb.com/api/json/v1/1/filter.php?c=')) {
@@ -90,7 +88,6 @@ function Main() {
       return listCategoryDrink;
     }
   };
-
   useEffect(() => {
     if (ingredientFilter !== '') { setCategorySelected(ingredientFilter); }
     if (pathname !== path) {
@@ -98,7 +95,6 @@ function Main() {
       setPath(pathname);
     }
   });
-
   useEffect(() => {
     if (path === '/foods') {
       const getCategoriesFood = async () => {
@@ -149,14 +145,18 @@ function Main() {
   const checkIfEqual = ({ target: { value } }) => {
     if (value === categorySelected) { setCategorySelected(''); }
   };
-
   const renderButtonsCategories = () => {
     const list = buttonsCategory;
     return (
-      <div>
+      <div className={ styles.categoriesWrapper }>
         {list.map((strCategory, index) => (
-          <label key={ index } htmlFor={ strCategory }>
+          <label
+            className={ categorySelected === strCategory ? styles.check : styles.labels }
+            key={ index }
+            htmlFor={ strCategory }
+          >
             <input
+              className={ styles.radios }
               type="radio"
               name="category"
               value={ strCategory }
@@ -169,8 +169,12 @@ function Main() {
             {strCategory}
           </label>
         ))}
-        <label htmlFor="all">
+        <label
+          className={ categorySelected === '' ? styles.check : styles.labels }
+          htmlFor="all"
+        >
           <input
+            className={ styles.radios }
             type="radio"
             name="category"
             value=""
@@ -184,7 +188,6 @@ function Main() {
       </div>
     );
   };
-
   const renderCards = () => {
     const maxLength = 12;
     if (path === '/foods' && recipes.meals !== null) {
@@ -193,8 +196,9 @@ function Main() {
         if (i < maxLength) {
           return (
             <Link key={ i } to={ { pathname: `/foods/${e.idMeal}` } }>
-              <div data-testid={ `${i}-recipe-card` }>
+              <div className={ styles.cards } data-testid={ `${i}-recipe-card` }>
                 <img
+                  className={ styles.cardImage }
                   data-testid={ `${i}-card-img` }
                   src={ e.strMealThumb }
                   alt={ e.strMeal }
@@ -215,8 +219,9 @@ function Main() {
         if (i < maxLength) {
           return (
             <Link key={ i } to={ { pathname: `/drinks/${e.idDrink}` } }>
-              <div data-testid={ `${i}-recipe-card` }>
+              <div className={ styles.cards } data-testid={ `${i}-recipe-card` }>
                 <img
+                  className={ styles.cardImage }
                   data-testid={ `${i}-card-img` }
                   src={ e.strDrinkThumb }
                   alt={ e.strDrink }
@@ -235,12 +240,15 @@ function Main() {
       return arrCards;
     }
   };
-
   return (
-    <div>
+    <div className={ styles.main }>
       <Header />
-      { renderButtonsCategories() }
-      { renderCards() }
+      <div className={ styles.categories }>
+        { renderButtonsCategories() }
+      </div>
+      <div className={ styles.recipesContainer }>
+        { renderCards() }
+      </div>
       <LesserMenu />
     </div>
   );

@@ -4,12 +4,14 @@ import { useHistory } from 'react-router-dom';
 import exploreIcon from '../images/exploreIcon.svg';
 import drinkIcon from '../images/drinkIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
+import styles from './css/LesserMenu.module.css';
 
 export default function LesserMenu() {
   const history = useHistory();
   return (
-    <footer data-testid="footer" className="footer">
+    <footer className={ styles.footerContainer } data-testid="footer">
       <button
+        className={ styles.buttons }
         onClick={ () => history.push('/drinks') }
         data-testid="drinks-bottom-btn"
         type="button"
@@ -18,6 +20,7 @@ export default function LesserMenu() {
         <img src={ drinkIcon } alt="drink icon" />
       </button>
       <button
+        className={ styles.buttons }
         onClick={ () => history.push('/explore') }
         data-testid="explore-bottom-btn"
         type="button"
@@ -26,6 +29,7 @@ export default function LesserMenu() {
         <img src={ exploreIcon } alt="explore icon" />
       </button>
       <button
+        className={ styles.buttons }
         onClick={ () => history.push('/foods') }
         data-testid="food-bottom-btn"
         type="button"

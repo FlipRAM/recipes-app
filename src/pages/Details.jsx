@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import copy from 'clipboard-copy';
@@ -14,6 +15,7 @@ import {
   unfavorite, saveRecipeDrink, saveRecipeMeal,
 } from './DetailsExtra/Functions2';
 import { fetchApi } from '../provider';
+import styles from './css/Details.module.css';
 
 export default function Details() {
   const { recipes, setRecipes } = useContext(MyContext);
@@ -91,6 +93,7 @@ export default function Details() {
     const trueOrFalse = {
       true: (
         <button
+          className={ styles.btnFavorite }
           onClick={ favorite }
           data-testid="favorite-btn"
           type="button"
@@ -101,6 +104,7 @@ export default function Details() {
       ),
       false: (
         <button
+          className={ styles.btnFavorite }
           onClick={ favorite }
           data-testid="favorite-btn"
           type="button"
@@ -132,30 +136,33 @@ export default function Details() {
   const renderMeal = () => {
     const arrRecipes = recipes.meals;
     return arrRecipes.map((e, index) => (
-      <div key={ index }>
+      <div className={ styles.recipesContainer } key={ index }>
         <img
-          className="recipe-photo"
+          className={ styles.recipePhoto }
           data-testid="recipe-photo"
           src={ e.strMealThumb }
           alt={ e.strMeal }
         />
-        <div>
+        <div className={ styles.details }>
           <h1 data-testid="recipe-title">{e.strMeal}</h1>
-          <p data-testid="recipe-category">{e.strCategory}</p>
-          <button onClick={ share } data-testid="share-btn" type="button">
-            { btnShare[shared] }
-          </button>
-          {returnFavoriteButton()}
+          <hr className={ styles.division } />
+          <p className={ styles.category } data-testid="recipe-category">{e.strCategory}</p>
+          <div className={ styles.shareAndLike }>
+            <button className={ styles.btnShare } onClick={ share } data-testid="share-btn" type="button">
+              { btnShare[shared] }
+            </button>
+            {returnFavoriteButton()}
+          </div>
         </div>
-        <div>
+        <div className={ styles.ingredients }>
           <h3>Ingredients</h3>
           {ingredientsMaped}
         </div>
-        <div>
+        <div className={ styles.instructions }>
           <h3>Instructions</h3>
           <p data-testid="instructions">{e.strInstructions}</p>
         </div>
-        <div>
+        <div className={ styles.video }>
           <h3>Video</h3>
           <iframe
             data-testid="video"
@@ -167,9 +174,9 @@ export default function Details() {
             allowFullScreen
           />
         </div>
-        <div>
+        <div className={ styles.recommended }>
           <h3>Recommended</h3>
-          <div className="carousel">
+          <div className={ styles.carousel }>
             {renderRecommended(arrRecommended, 'drinks')}
           </div>
         </div>
@@ -178,32 +185,35 @@ export default function Details() {
   const renderDrink = () => {
     const arrRecipes = recipes.drinks;
     return arrRecipes.map((e, i) => (
-      <div key={ i }>
+      <div className={ styles.recipesContainer } key={ i }>
         <img
-          className="recipe-photo"
+          className={ styles.recipePhoto }
           data-testid="recipe-photo"
           src={ e.strDrinkThumb }
           alt={ e.strDrink }
         />
-        <div>
+        <div className={ styles.details }>
           <h1 data-testid="recipe-title">{e.strDrink}</h1>
-          <p data-testid="recipe-category">{e.strAlcoholic}</p>
-          <button onClick={ share } data-testid="share-btn" type="button">
-            { btnShare[shared] }
-          </button>
-          {returnFavoriteButton()}
+          <hr className={ styles.division } />
+          <p className={ styles.category } data-testid="recipe-category">{e.strAlcoholic}</p>
+          <div className={ styles.shareAndLike }>
+            <button className={ styles.btnShare } onClick={ share } data-testid="share-btn" type="button">
+              { btnShare[shared] }
+            </button>
+            {returnFavoriteButton()}
+          </div>
         </div>
-        <div>
+        <div className={ styles.ingredients }>
           <h3>Ingredients</h3>
           {ingredientsMaped}
         </div>
-        <div>
+        <div className={ styles.instructions }>
           <h3>Instructions</h3>
           <p data-testid="instructions">{e.strInstructions}</p>
         </div>
-        <div>
+        <div className={ styles.recommended }>
           <h3>Recommended</h3>
-          <div className="carousel">
+          <div className={ styles.carousel }>
             {renderRecommended(arrRecommended, 'meals')}
           </div>
         </div>
@@ -227,13 +237,13 @@ export default function Details() {
     history.push(`${history.location.pathname}/in-progress`);
   };
   return (
-    <div>
+    <div className={ styles.main }>
       {render && renderRecipe() }
       {finishedRecipe ? '' : (
         <button
           data-testid="start-recipe-btn"
           type="submit"
-          className="footer"
+          className={ styles.footer }
           onClick={ startResumeRecipe }
         >
           {startOrContinue}

@@ -1,0 +1,63 @@
+.main {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.recipesContainer {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 80px;
+}
+
+.cardImage {
+  border-radius: var(--radius);
+  margin-top: 12px;
+  width: 300px;
+}
+
+.categories {
+  margin-bottom: 24px;
+  margin-top: 80px;
+}
+
+.categoriesWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.radios {
+  display: none;
+}
+
+.labels {
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  margin: 5px;
+  padding: 0.3rem 0.6rem;
+}
+
+.check {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--shadow-purple);
+  cursor: pointer;
+  margin: 5px;
+  padding: 0.3rem 0.6rem;
+}
+
+.cards {
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-radius: var(--radius);
+  color: var(--primary-color);
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 24px;
+  height: 400px;
+  justify-content: space-evenly;
+  margin-bottom: 24px;
+  text-align: center;
+  text-decoration: none;
+  width: 320px;
+}

@@ -10,6 +10,7 @@ import {
 } from './DetailsExtra/Functions2';
 import { extraVerifyAll } from './DetailsExtra/Functions';
 import { fetchApi } from '../provider';
+import styles from './css/InProgress.module.css';
 
 const FIFTEEN = 15;
 const FIVE = 5;
@@ -75,6 +76,7 @@ export default function InProgress() {
     const trueOrFalse = {
       true: (
         <button
+          className={ styles.btnFavorite }
           onClick={ favorite }
           data-testid="favorite-btn"
           type="button"
@@ -85,6 +87,7 @@ export default function InProgress() {
       ),
       false: (
         <button
+          className={ styles.btnFavorite }
           onClick={ favorite }
           data-testid="favorite-btn"
           type="button"
@@ -148,16 +151,19 @@ export default function InProgress() {
       const ingredientsCheck = ingredients.map((str, index) => (
         <div key={ index } data-testid={ `${index}-ingredient-step` }>
           <input
+            id={ index }
+            className={ styles.radios }
             type="checkbox"
             checked={ checkChecked(allIngredients[index]) }
             onChange={ () => findCheckIndex(index) }
           />
-          <p
+          <label
+            htmlFor={ index }
             className={ (arrChecked[index] === true
-              || checkChecked(allIngredients[index])) && 'risked' }
+              || checkChecked(allIngredients[index])) && styles.ingredientsLabels }
           >
             {str}
-          </p>
+          </label>
         </div>
       ));
       return ingredientsCheck;
@@ -166,26 +172,39 @@ export default function InProgress() {
   const renderDrink = () => {
     const arrRecipes = recipes.drinks;
     return arrRecipes.map((e, i) => (
-      <div key={ i }>
+      <div className={ styles.recipesContainer } key={ i }>
         <img
-          className="recipe-photo"
+          className={ styles.recipePhoto }
           data-testid="recipe-photo"
           src={ e.strDrinkThumb }
           alt={ e.strDrink }
         />
-        <div>
+        <div className={ styles.details }>
           <h1 data-testid="recipe-title">{e.strDrink}</h1>
-          <p data-testid="recipe-category">{e.strAlcoholic}</p>
-          <button onClick={ share } data-testid="share-btn" type="button">
-            { btnShare[shared] }
-          </button>
-          {returnFavoriteButton()}
+          <hr className={ styles.division } />
+          <p
+            className={ styles.category }
+            data-testid="recipe-category"
+          >
+            {e.strAlcoholic}
+          </p>
+          <div className={ styles.shareAndLike }>
+            <button
+              className={ styles.btnShare }
+              onClick={ share }
+              data-testid="share-btn"
+              type="button"
+            >
+              { btnShare[shared] }
+            </button>
+            {returnFavoriteButton()}
+          </div>
         </div>
-        <div>
+        <div className={ styles.ingredients }>
           <h3>Ingredients</h3>
           {renderIngredients(recipes.drinks, FIFTEEN)}
         </div>
-        <div>
+        <div className={ styles.instructions }>
           <h3>Instructions</h3>
           <p data-testid="instructions">{e.strInstructions}</p>
         </div>
@@ -196,12 +215,12 @@ export default function InProgress() {
     history.push('/done-recipes');
   };
   return (
-    <div>
+    <div className={ styles.main }>
       {render === true && renderDrink()}
       <button
         data-testid="finish-recipe-btn"
         type="submit"
-        className="footer"
+        className={ styles.footer }
         onClick={ completeRecipe }
         disabled={ isRecipeCompleted }
       >

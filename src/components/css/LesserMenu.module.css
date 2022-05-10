@@ -1,0 +1,22 @@
+.footerContainer {
+  background-color: var(--secondary-color);
+  bottom: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  position: fixed;
+  width: 100%;
+}
+
+.buttons {
+  background: var(--secondary-color);
+  border: 2px solid var(--shadow-purple);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  flex-grow: 1;
+  padding: 0.3rem 0.6rem;
+  transition: 0.1s;
+}
+
+.buttons:active {
+  box-shadow: 0 4px 4px var(--black);
+}

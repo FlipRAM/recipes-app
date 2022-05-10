@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import { fetchApi } from '../provider';
+import styles from './css/SearchBar.module.css';
 
 function Header() {
   const [checkedRadios, setCheckedRadios] = useState({});
@@ -93,52 +94,61 @@ function Header() {
   }, [recipes]);
 
   return (
-    <div>
-      <input
-        onChange={ getSearchValue }
-        value={ searchValue }
-        data-testid="search-input"
-        type="text"
-        id="search-input"
-        placeholder="Search Recipe"
-      />
-      <label htmlFor="ingredientSearchRadio">
-        Ingredient
+    <div className={ styles.searchContainer }>
+      <div className={ styles.search }>
         <input
-          onChange={ getCheckedRadios }
-          data-testid="ingredient-search-radio"
-          type="radio"
-          id="ingredientSearchRadio"
-          name="searchRadio"
+          className={ styles.inputSearch }
+          onChange={ getSearchValue }
+          value={ searchValue }
+          data-testid="search-input"
+          type="text"
+          id="search-input"
+          placeholder="Search Recipe"
         />
-      </label>
-      <label htmlFor="nameSearchRadio">
-        Name
-        <input
-          onChange={ getCheckedRadios }
-          data-testid="name-search-radio"
-          type="radio"
-          id="nameSearchRadio"
-          name="searchRadio"
-        />
-      </label>
-      <label htmlFor="firstLetterSearchRadio">
-        First Letter
-        <input
-          onChange={ getCheckedRadios }
-          data-testid="first-letter-search-radio"
-          type="radio"
-          id="firstLetterSearchRadio"
-          name="searchRadio"
-        />
-      </label>
-      <button
-        onClick={ makeSearch }
-        data-testid="exec-search-btn"
-        type="button"
-      >
-        Search
-      </button>
+        <button
+          className={ styles.buttonSearch }
+          onClick={ makeSearch }
+          data-testid="exec-search-btn"
+          type="button"
+        >
+          Search
+        </button>
+      </div>
+      <div className={ styles.filters }>
+        <label className={ styles.labels } htmlFor="ingredientSearchRadio">
+          <input
+            className={ styles.radios }
+            onChange={ getCheckedRadios }
+            data-testid="ingredient-search-radio"
+            type="radio"
+            id="ingredientSearchRadio"
+            name="searchRadio"
+          />
+          Ingredient
+        </label>
+        <label className={ styles.labels } htmlFor="nameSearchRadio">
+          <input
+            className={ styles.radios }
+            onChange={ getCheckedRadios }
+            data-testid="name-search-radio"
+            type="radio"
+            id="nameSearchRadio"
+            name="searchRadio"
+          />
+          Name
+        </label>
+        <label className={ styles.labels } htmlFor="firstLetterSearchRadio">
+          <input
+            className={ styles.radios }
+            onChange={ getCheckedRadios }
+            data-testid="first-letter-search-radio"
+            type="radio"
+            id="firstLetterSearchRadio"
+            name="searchRadio"
+          />
+          First Letter
+        </label>
+      </div>
     </div>
   );
 }

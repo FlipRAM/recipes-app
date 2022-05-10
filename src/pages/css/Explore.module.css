@@ -1,0 +1,34 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
+  width: 100%;
+}
+
+.btnsFilter {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
+  height: 100vh;
+  justify-content: center;
+  width: 90%;
+}
+
+.btns {
+  background: var(--accent-color);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0.3rem 0.6rem;
+  transition: 0.1s;
+  width: 50%;
+}
+
+.btns:active {
+  box-shadow: 0 4px 4px var(--black);
+}

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import copy from 'clipboard-copy';
@@ -10,6 +11,7 @@ import {
 } from './DetailsExtra/Functions2';
 import { extraVerifyAll } from './DetailsExtra/Functions';
 import { fetchApi } from '../provider';
+import styles from './css/InProgress.module.css';
 
 const TWENTY = 20;
 const FIVE = 5;
@@ -58,12 +60,10 @@ export default function InProgressFood() {
     }
     if (arrChecked.includes(false) !== true && isRecipeCompleted === true) {
       setIsRecipeCompleted(false);
-      console.log('entrou');
     }
     if (arrChecked.includes(false) === true && isRecipeCompleted === false) {
       setIsRecipeCompleted(true);
     }
-    console.log('arrIngredients', arrIngredients);
   }, [recipes, render, arrChecked, listIngredients]);
   const favorite = () => {
     const trueOrFalse = {
@@ -77,6 +77,7 @@ export default function InProgressFood() {
     const trueOrFalse = {
       true: (
         <button
+          className={ styles.btnFavorite }
           onClick={ favorite }
           data-testid="favorite-btn"
           type="button"
@@ -87,6 +88,7 @@ export default function InProgressFood() {
       ),
       false: (
         <button
+          className={ styles.btnFavorite }
           onClick={ favorite }
           data-testid="favorite-btn"
           type="button"
@@ -150,16 +152,19 @@ export default function InProgressFood() {
       const ingredientsCheck = ingredients.map((str, index) => (
         <div key={ index } data-testid={ `${index}-ingredient-step` }>
           <input
+            className={ styles.radios }
+            id={ index }
             type="checkbox"
             checked={ checkChecked(allIngredients[index]) }
             onChange={ () => findCheckIndex(index) }
           />
-          <p
+          <label
+            htmlFor={ index }
             className={ (arrChecked[index] === true
-              || checkChecked(allIngredients[index])) && 'risked' }
+              || checkChecked(allIngredients[index])) && styles.ingredientsLabels }
           >
             {str}
-          </p>
+          </label>
         </div>
       ));
       return ingredientsCheck;
@@ -168,26 +173,29 @@ export default function InProgressFood() {
   const renderMeal = () => {
     const arrRecipes = recipes.meals;
     return arrRecipes.map((e, index) => (
-      <div key={ index }>
+      <div className={ styles.recipesContainer } key={ index }>
         <img
-          className="recipe-photo"
+          className={ styles.recipePhoto }
           data-testid="recipe-photo"
           src={ e.strMealThumb }
           alt={ e.strMeal }
         />
-        <div>
+        <div className={ styles.details }>
           <h1 data-testid="recipe-title">{e.strMeal}</h1>
-          <p data-testid="recipe-category">{e.strCategory}</p>
-          <button onClick={ share } data-testid="share-btn" type="button">
-            { btnShare[shared] }
-          </button>
-          {returnFavoriteButton()}
+          <hr className={ styles.division } />
+          <p className={ styles.category } data-testid="recipe-category">{e.strCategory}</p>
+          <div className={ styles.shareAndLike }>
+            <button className={ styles.btnShare } onClick={ share } data-testid="share-btn" type="button">
+              { btnShare[shared] }
+            </button>
+            {returnFavoriteButton()}
+          </div>
         </div>
-        <div>
+        <div className={ styles.ingredients }>
           <h3>Ingredients</h3>
           {renderIngredients(recipes.meals, TWENTY)}
         </div>
-        <div>
+        <div className={ styles.instructions }>
           <h3>Instructions</h3>
           <p data-testid="instructions">{e.strInstructions}</p>
         </div>
@@ -198,12 +206,12 @@ export default function InProgressFood() {
     history.push('/done-recipes');
   };
   return (
-    <div>
+    <div className={ styles.main }>
       {render === true && renderMeal()}
       <button
         data-testid="finish-recipe-btn"
         type="submit"
-        className="footer"
+        className={ styles.footer }
         onClick={ completeRecipe }
         disabled={ isRecipeCompleted }
       >

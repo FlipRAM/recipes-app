@@ -1,0 +1,93 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
+  width: 100%;
+}
+
+.btnsFilter {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 80px;
+  width: 80%;
+}
+
+.btns {
+  background: var(--accent-color);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0.3rem 0.6rem;
+  transition: 0.1s;
+  width: 30%;
+}
+
+.btns:active {
+  box-shadow: 0 4px 4px var(--black);
+}
+
+.recipePhoto {
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  margin-top: 24px;
+  width: 90%;
+}
+
+.eachRecipe {
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-radius: var(--radius);
+  color: var(--primary-color);
+  display: flex;
+  flex-flow: column nowrap;
+  width: 90%;
+}
+
+.eachRecipe:last-child {
+  margin-bottom: 40px;
+}
+
+.eachRecipe a {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.divisionWhite {
+  background-color: var(--primary-color);
+  margin: 0;
+  width: 80%;
+}
+
+.name {
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.btnShareAndFavorite {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+.btnShare, .btnFavorite {
+  background: var(--accent-color);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  margin: 12px 0;
+  padding: 0.3rem 0.6rem;
+  transition: 0.1s;
+}
+
+.btnShare:active, .btnFavorite:active {
+  box-shadow: 0 4px 4px var(--black);
+}

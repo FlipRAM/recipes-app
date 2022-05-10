@@ -1,0 +1,125 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.recipesContainer {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.recipePhoto {
+  border-radius: var(--radius);
+  margin-top: 24px;
+  width: 90%;
+}
+
+.division {
+  background-color: var(--black);
+  margin: 0;
+  width: 80%;
+}
+
+.divisionWhite {
+  background-color: var(--primary-color);
+  margin: 0;
+  width: 80%;
+}
+
+.recommended {
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.details {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.shareAndLike {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 40%;
+}
+
+.btnShare, .btnFavorite {
+  background: var(--secondary-color);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  transition: 0.1s;
+}
+
+.btnShare:active, .btnFavorite:active {
+  box-shadow: 0 4px 4px var(--black);
+}
+
+.category {
+  font-size: 24px;
+}
+
+.ingredients {
+  background-color: var(--secondary-color);
+  border-radius: var(--radius);
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  text-align: center;
+  width: 80%;
+}
+
+.instructions {
+  width: 80%;
+}
+
+.instructions, .video, .recommended {
+  text-align: center;
+}
+
+.carousel {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: row nowrap;
+  overflow-x: scroll;
+  padding-top: 12px;
+}
+
+.carousel img {
+  border-radius: var(--radius);
+  margin: 0 15px;
+  width: 200px;
+}
+
+.eachRecommended {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.footer {
+  background: var(--secondary-color);
+  border: none;
+  bottom: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 12px;
+  padding: 0.3rem 0.6rem;
+  position: fixed;
+  transition: 0.1s;
+  width: 100%;
+}
+

@@ -1,0 +1,82 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+@keyframes shake {
+
+  0% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes clink {
+
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
+
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+
+.logo {
+  animation: shake 1s infinite ease;
+  height: 100px;
+  margin-bottom: 10px;
+  max-height: 80vh;
+}
+
+.loginContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.loginContainer input {
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color: black;
+  font-size: 16px;
+  outline: none;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.loginButton {
+  background: var(--accent-color);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  transition: 0.1s;
+}
+
+.loginButton:active {
+  box-shadow: 0 4px 4px var(--black);
+}
